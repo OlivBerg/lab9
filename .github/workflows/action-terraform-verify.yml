@@ -47,6 +47,17 @@ jobs:
               fi
             fi
           done
+      - name: Validate terraform
+        run: |
+          set +e
+
+          terraform validate
+          VALIDATE_STATUS=$?
+
+          if [[ $VALIDATE_STATUS -ne 0 ]]; then
+            echo "❌ terraform validate failed" >> $GITHUB_STEP_SUMMARY
+            echo "CHECK_STATUS=1" >> $GITHUB_ENV
+          fi
       - name: Process check
         if: always()
         run: exit $CHECK_STATUS
