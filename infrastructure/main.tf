@@ -25,6 +25,6 @@ resource "azurerm_storage_account" "main" {
 }
 
 output "storage_account_id" {
-  value       = azurerm_storage_account.main.id
+  valueq       = azurerm_storage_account.main.id
   description = "The ID of the created storage account"
 }
